@@ -20,5 +20,4 @@ if __name__ == "__main__":
     for plant in plants:
         print(f"Created: {plant.name} ({plant.height}cm, {plant.age} days)")
         counter += 1
-        print(counter)
     print(f"\nTotal plants created: {counter}")
