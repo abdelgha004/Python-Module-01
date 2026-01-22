@@ -1,22 +1,7 @@
 #!/usr/bin/env python3
 
 class Plant:
-    """
-    A simple data model for a garden plant.
-
-    This class represents a plant by storing its basic properties:
-    name, height in centimeters, and age in days.
-    """
-
     def __init__(self, name: str, height: int, age: int):
-        """
-        Initialize a Plant instance.
-
-        Args:
-            name (str): Name of the plant.
-            height (int): Height of the plant in centimeters.
-            age (int): Age of the plant in days.
-        """
         self.name = name
         self.height = height
         self.age = age
@@ -25,7 +10,6 @@ class Plant:
 
     def grow(self):
         self.height += 1
-        self.weekly_growth += 1
 
     def age_up(self):
         self.age += 1
@@ -37,10 +21,15 @@ class Plant:
 
 
 if __name__ == "__main__":
-    rose = Plant("Rose", 25, 30)
-    rose.get_info()
-    for _ in range(6):
-        rose.grow()
-        rose.age_up()
-    rose.get_info()
-    print(f"Growth this week: +{rose.weekly_growth}cm")
+    plants = [
+        Plant("Rose", 25, 30),
+        Plant("Cactus", 5, 90)
+    ]
+    for plant in plants:
+        plant.get_info()
+        for i in range(6):
+            plant.grow()
+            plant.age_up()
+        plant.get_info()
+        print(f"Growth this week: +{i + 1}cm")
+        print("-------------------")
