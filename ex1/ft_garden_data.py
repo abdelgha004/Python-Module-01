@@ -8,10 +8,11 @@ class Plant:
 
 
 if __name__ == "__main__":
-    plant_1 = Plant("Rose", 25, 30)
-    plant_2 = Plant("Sunflower", 80, 45)
-    plant_3 = Plant("Cactus", 15, 120)
-    garden_plants = [plant_1, plant_2, plant_3]
+    garden_plants = [
+        Plant("Rose", 25, 30),
+        Plant("Sunflower", 80, 45),
+        Plant("Cactus", 15, 120)
+    ]
     print("=== Garden Plant Registry ===")
     for plant in garden_plants:
         print(f"{plant.name}: {plant.height}cm, {plant.age} days old")
