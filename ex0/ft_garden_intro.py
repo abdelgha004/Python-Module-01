@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+"""Simple script that displays basic plant information."""
 
 if __name__ == "__main__":
+    """Main program entry point."""
     name = "Rose"
     height = 25
     age = 30

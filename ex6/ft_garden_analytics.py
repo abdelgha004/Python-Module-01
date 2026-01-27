@@ -1,55 +1,94 @@
 #!/usr/bin/env python3
 
 class Plant:
-    """Base class for all plants"""
+    """Base class for all plants."""
     def __init__(self, name, height):
+        """
+        Initialize a Plant.
+
+        Args:
+            name (str): The name of the plant.
+            height (int): The height of the plant in cm.
+        """
         self.name = name
         self.height = height
 
     def grow(self):
-        """Increase plant height by 1cm"""
+        """Increase plant height by 1cm."""
         self.height += 1
 
 
 class FloweringPlant(Plant):
-    """Plant that can produce flowers"""
+    """Plant that can produce flowers."""
     def __init__(self, name, height, color=None, blooming=False):
+        """
+        Initialize a FloweringPlant.
+
+        Args:
+            name (str): The name of the plant.
+            height (int): The height of the plant in cm.
+            color (str, optional): The flower color.
+            blooming (bool, optional): Whether the plant is blooming.
+        """
         super().__init__(name, height)
         self.color = color
         self.blooming = blooming
 
 
 class PrizeFlower(FloweringPlant):
-    """Special flowering plant that can win prizes"""
+    """Special flowering plant that can win prizes."""
     def __init__(self, name, height, color=None,
                  blooming=False, prize_points=0):
+        """
+        Initialize a PrizeFlower.
+
+        Args:
+            name (str): The name of the plant.
+            height (int): The height of the plant in cm.
+            color (str, optional): The flower color.
+            blooming (bool, optional): Whether the plant is blooming.
+            prize_points (int, optional): Prize points for the plant.
+        """
         super().__init__(name, height, color, blooming)
         self.prize_points = prize_points
 
 
 class GardenManager:
-    """Manages multiple gardens and provides analytics"""
+    """Manages multiple gardens and provides analytics."""
     total_gardens = 0
 
     def __init__(self):
+        """Initialize a GardenManager and increment total gardens."""
         self.gardens = []
         GardenManager.total_gardens += 1
 
     class Garden:
-        """Individual garden that contains plants"""
+        """Individual garden that contains plants."""
         def __init__(self, owner):
+            """
+            Initialize a Garden.
+
+            Args:
+                owner (str): The name of the garden owner.
+            """
             self.owner = owner
             self.plants = []
             self.total_growth = 0
 
         def add_plant(self, plant, printed=True):
-            """Add a plant to this garden"""
+            """
+            Add a plant to this garden.
+
+            Args:
+                plant (Plant): The plant instance to add.
+                printed (bool, optional): Whether to print confirmation.
+            """
             self.plants.append(plant)
             if printed:
                 print(f"Added {plant.name} to {self.owner}'s garden")
 
         def grow_all_plants(self):
-            """Make all plants in the garden grow"""
+            """Grow all plants in the garden by 1cm."""
             print(f"\n{self.owner} is helping all plants grow...")
             for plant in self.plants:
                 plant.grow()
@@ -57,6 +96,12 @@ class GardenManager:
                 print(f"{plant.name} grew 1cm")
 
         def report(self, all_gardens):
+            """
+            Print a report of the garden, including plant details and scores.
+
+            Args:
+                all_gardens (list): List of all gardens for score comparison.
+            """
             print(f"\n=== {self.owner}'s Garden Report ===")
             print("Plants in garden:")
 
@@ -95,12 +140,18 @@ class GardenManager:
             print(", ".join(scores))
 
     class GardenStats:
-        """Helper class for calculating garden statistics"""
+        """Helper class for calculating garden statistics."""
         def __init__(self, garden):
+            """
+            Initialize GardenStats.
+
+            Args:
+                garden (GardenManager.Garden): The garden to analyze.
+            """
             self.garden = garden
 
         def count_plant_types(self):
-            """Count different types of plants in the garden"""
+            """Count regular, flowering, and prize plants in the garden."""
             self.regular = 0
             self.flowering = 0
             self.prize = 0
@@ -115,7 +166,7 @@ class GardenManager:
                 self.total_plants += 1
 
         def check_height_validity(self):
-            """Verify all plants have valid heights"""
+            """Verify all plants have positive height."""
             self.height_validation = True
             for plant in self.garden.plants:
                 if plant.height <= 0:
@@ -123,7 +174,13 @@ class GardenManager:
                     break
 
         def garden_scores(self):
-            """Calculate total score for the garden"""
+            """
+            Calculate the total score for the garden.
+
+            Returns:
+                int: Total score including height, blooming bonus,
+                and prize points.
+            """
             score = 0
             for plant in self.garden.plants:
                 score += plant.height
@@ -137,7 +194,10 @@ class GardenManager:
             return score
 
     def create_garden_network(cls):
-        """Class method that creates and manages a network of gardens"""
+        """
+        Class method that creates a demo network of gardens,
+        grows plants, and prints reports.
+        """
         manager1 = cls()
         manager2 = cls()
 
@@ -164,5 +224,6 @@ class GardenManager:
 
 
 if __name__ == "__main__":
+    """Run the Garden Management System demo."""
     print("=== Garden Management System Demo ===\n")
     GardenManager.create_garden_network()
